@@ -21,7 +21,7 @@ function Sidedrawer() {
     if (!drawer) setMachineIddle(true);
   }, [drawer]);
   return (
-    <div className="flex flex-1 flex-col items-center w-[40%] h-full">
+    <div className="flex flex-1 flex-col items-center w-[40%] h-full border-r-graytheme-light border-r-[22px]">
       <div className="h-[10%]"></div>
       <div className="flex-1 flex flex-col items-center gap-5 w-full">
         <div className="w-4/5 h-[10%] flex flex-col items-center justify-center gap-4">

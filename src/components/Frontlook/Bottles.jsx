@@ -79,7 +79,7 @@ function Bottles({ bottle, value }) {
       <div className="h-full w-full flex flex-1 items-end">
         <animated.div
           style={{ ...springPropsMetal, zIndex: springBeforeFall.zIndex }}
-          className="absolute w-[100%] z-20 flex flex-1 justify-center items-end h-full"
+          className="absolute w-[100%] z-20 flex flex-1 justify-center right-2 items-end h-full"
         >
           <Metalroll />
         </animated.div>

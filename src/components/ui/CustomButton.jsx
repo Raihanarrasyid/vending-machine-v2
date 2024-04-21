@@ -101,7 +101,7 @@ function CustomButton({ content, img, imgAlt }) {
       <div className="relative flex items-center justify-center">
         <animated.div
           style={springProps}
-          className="w-9 z-10 h-10 flex items-center justify-center bg-graytheme-light text-graytheme-default p-3 rounded-md cursor-pointer shadow-lg hover:shadow-xl transition duration-300 ease-in-out hover:bg-graytheme-default hover:text-graytheme-light"
+          className="w-8 z-10 h-8 flex items-center justify-center bg-graytheme-light text-graytheme-default p-3 rounded-md cursor-pointer shadow-lg hover:shadow-xl transition duration-300 ease-in-out hover:bg-graytheme-default hover:text-graytheme-light"
         >
           <div className="p-[0.2px]">
             {content ? content : <img src={img} alt="button" />}

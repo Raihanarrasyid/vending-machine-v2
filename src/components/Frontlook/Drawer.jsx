@@ -76,7 +76,7 @@ function Drawer() {
     >
       <Element
         name="drawer"
-        className="relative w-4/5 h-[45%] bg-graytheme-default flex items-center justify-center rounded-md"
+        className="relative w-[95%] h-[45%] bg-graytheme-default flex items-center justify-center rounded-md"
       >
         <div style={{ perspective: "1000px" }} className="w-full h-full">
           <animated.div

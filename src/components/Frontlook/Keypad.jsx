@@ -8,7 +8,7 @@ import ButtonRow from "./ButtonRow";
 function Keypad() {
   const ButtonContentsKey = Object.keys(ButtonContents);
   return (
-    <div className="w-4/5 h-full flex mt-5 flex-col gap-4 flex-1">
+    <div className="w-[60%] h-full flex mt-5 flex-col gap-4 flex-1">
       {ButtonContentsKey.map((buttonkey) => (
         <ButtonRow key={buttonkey} buttonkey={buttonkey} />
       ))}
