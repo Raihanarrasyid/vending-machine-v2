@@ -4,9 +4,10 @@ import Metalroll from "../svg/Metalroll";
 import { useSpring, animated } from "@react-spring/web";
 
 import { useBuy } from "../../global/globalState";
+import { machineSettings } from "../../global/state";
 
-function Bottles({ bottle, value }) {
-  const bottleValue = value;
+function Bottles({ bottle, value, column, row }) {
+  const [bottleValue, setBottleValue] = useState(value);
   const buy = useBuy((state) => state.buy);
   const buyBottleCode = useBuy((state) => state.bottleCode);
   const setBuy = useBuy((state) => state.setBuy);
@@ -15,6 +16,9 @@ function Bottles({ bottle, value }) {
   const [fall, setFall] = useState(false);
   const [shake, setShake] = useState(false);
   const setDrawer = useBuy((state) => state.setDrawer);
+
+  const availableRow = machineSettings.availableRows;
+  const availableColumn = machineSettings.availableColumns;
 
   const springPropsMetal = useSpring({
     transform: `translate(${disappear ? 10 : 0}px, ${disappear ? 10 : 0}px)`,
@@ -56,6 +60,12 @@ function Bottles({ bottle, value }) {
   };
 
   useEffect(() => {
+    if (column > availableColumn || row > availableRow) {
+      setBottleValue("");
+    }
+  }, []);
+
+  useEffect(() => {
     if (buy && buyBottleCode === bottleValue) {
       setDisappear(true);
       setShake(true);
@@ -76,25 +86,28 @@ function Bottles({ bottle, value }) {
 
   return (
     <div className="relative flex flex-1 items-center justify-center">
-      <div className="h-full w-full flex flex-1 items-end">
-        <animated.div
-          style={{ ...springPropsMetal, zIndex: springBeforeFall.zIndex }}
-          className="absolute w-[100%] z-20 flex flex-1 justify-center right-2 items-end h-full"
-        >
-          <Metalroll />
-        </animated.div>
-      </div>
       <animated.div
-        style={fall ? springBeforeFall : springAfterFall}
-        className="absolute flex flex-1 items-center justify-center z-10 right-2 bottom-1 w-full h-full"
+        style={{ ...springPropsMetal, zIndex: springBeforeFall.zIndex }}
+        className="absolute w-[100%] z-20 flex flex-1 justify-center right-2 items-end h-full"
       >
-        <img
-          src={bottle.image}
-          alt={bottle.name}
-          className="w-[40%] h-[80%]"
-          style={shake ? { animation: "shake 0.5s" } : {}}
-        />
+        <Metalroll />
       </animated.div>
+      {row <= availableRow && column <= availableColumn && (
+        <>
+          <div className="h-full w-full flex flex-1 items-end"></div>
+          <animated.div
+            style={fall ? springBeforeFall : springAfterFall}
+            className="absolute flex flex-1 items-center justify-center z-10 right-2 bottom-1 w-full h-full"
+          >
+            <img
+              src={bottle.image}
+              alt={bottle.name}
+              className="w-[40%] h-[80%]"
+              style={shake ? { animation: "shake 0.5s" } : {}}
+            />
+          </animated.div>
+        </>
+      )}
       <div className="absolute z-0 w-full">
         <MetalSeparator />
       </div>

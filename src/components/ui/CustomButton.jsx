@@ -3,11 +3,13 @@ import { Products } from "../../global/state";
 
 import { useBuy, useDisplay, displayIddle } from "../../global/globalState";
 import { useSpring, animated } from "@react-spring/web";
+import { machineSettings } from "../../global/state";
 
 function CustomButton({ content, img, imgAlt }) {
   const [isClicked, setIsClicked] = useState(false);
   const [bottle, setBottle] = useState({});
   const [disabled, setDisabled] = useState(false);
+  const [productsAvailable, setProductAvailable] = useState(Products);
 
   const display = useDisplay((state) => state.display);
   const setBottleCode = useBuy((state) => state.setBottleCode);
@@ -17,6 +19,9 @@ function CustomButton({ content, img, imgAlt }) {
   const setScreen = useDisplay((state) => state.setScreen);
   const setMachineIddle = displayIddle((state) => state.setMachineIddle);
   const drawer = useBuy((state) => state.drawer);
+
+  const availableRows = machineSettings.availableRows;
+  const availableColumns = machineSettings.availableColumns;
 
   const springProps = useSpring({
     transform: `translate(${isClicked ? 500 : 0}px, ${isClicked ? 500 : 0}px)`,
@@ -67,11 +72,30 @@ function CustomButton({ content, img, imgAlt }) {
   };
 
   useEffect(() => {
+    const updatedProducts = {};
+    let i = 0;
+    for (let key in Products) {
+      if (i < availableRows) {
+        updatedProducts[key] = Products[key].map((product, index) => {
+          if (index < availableColumns) {
+            return product;
+          }
+          return null;
+        });
+      }
+      i++;
+    }
+    setProductAvailable(updatedProducts);
+  }, []);
+
+  useEffect(() => {
     setScreen({ code: display, name: "", price: "" });
     if (display.length === 2) {
       try {
-        if (Products[display[0]][parseInt(display[1] - 1)]) {
-          setScreen(Products[`${display[0]}`][`${parseInt(display[1] - 1)}`]);
+        if (productsAvailable[display[0]][parseInt(display[1] - 1)]) {
+          setScreen(
+            productsAvailable[`${display[0]}`][`${parseInt(display[1] - 1)}`]
+          );
           setMachineIddle(false);
         } else {
           clearDisplay();

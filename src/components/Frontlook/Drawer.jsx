@@ -86,8 +86,11 @@ function Drawer() {
               transformOrigin: "center center",
               backgroundColor: `${drawerColor}`,
             }}
-            className="w-full h-full rounded-md flex justify-center items-center p-9"
+            className="w-full h-full rounded-md flex justify-between flex-col items-center p-9"
           >
+            <div className="mt-[-38px] h-8 rounded-b-md w-24 bg-black">
+              test
+            </div>
             <img
               src={drawerLogo}
               alt="logo drawer"
