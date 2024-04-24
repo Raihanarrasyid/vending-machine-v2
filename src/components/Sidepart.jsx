@@ -15,7 +15,7 @@ function Sidepart() {
         }}
         className="h-[1880px] bg-red-8 flex items-center justify-center relative"
       ></div> */}
-      <div className="relative h-[1880px]">
+      <div className="relative">
         <Sidedimension />
       </div>
       <img src={sideLogo} alt="side" className="w-[150px] h-[545px] absolute" />
