@@ -21,7 +21,13 @@ function Sidedrawer() {
     if (!drawer) setMachineIddle(true);
   }, [drawer]);
   return (
-    <div className="flex flex-1 flex-col items-center w-[40%] h-full border-r-graytheme-light border-r-[22px]">
+    <div
+      style={{
+        boxShadow:
+          "inset -5px 0 5px rgba(150, 150, 150, 1), inset 5px 0 5px rgba(150, 150, 150, 1), inset 0 1000px 1000px rgba(0, 0, 0, 1)",
+      }}
+      className="flex flex-1 flex-col items-center w-[40%] h-full border-r-graytheme-light border-r-[22px]"
+    >
       <div className="h-[10%]"></div>
       <div className="flex-1 flex flex-col items-center gap-5 w-full">
         <div className="w-[90%] h-[10%] flex flex-col items-center justify-center gap-4">

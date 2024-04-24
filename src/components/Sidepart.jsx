@@ -12,7 +12,7 @@ function Sidepart() {
           borderTop: "180px solid transparent",
           borderBottom: "180px solid transparent",
         }}
-        className="rounded-lg h-[1891px] flex items-center justify-centerrelative"
+        className="h-[1880px] flex items-center justify-center relative"
       ></div>
       <img src={sideLogo} alt="side" className="w-[150px] h-[545px] absolute" />
     </div>

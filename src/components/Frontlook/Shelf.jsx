@@ -10,9 +10,9 @@ function Shelf() {
   return (
     <div
       style={{
-        boxShadow: "3px 0 3px rgba(150, 150, 150, 1)",
+        boxShadow: "inset 5px 0 5px rgba(150, 150, 150, 1)",
       }}
-      className="flex flex-col w-[80%] h-[100%] border-x-[22px] border-graytheme-light rounded-lg"
+      className="flex flex-col w-[80%] h-[100%] border-x-[22px] border-graytheme-light"
     >
       <div className="relative h-[65%] mt-[33px] bg-graytheme-default flex justify-center items-center">
         <Glass />

@@ -7,11 +7,12 @@ import Vent from "./Frontlook/Vent";
 function Frontlook() {
   const vent = machineSettings.vent;
   return (
-    <div className="relative flex w-[837px] h-[1884px] bg-black flex-col rounded-lg mt-1">
+    <div className="relative flex w-[837px] h-[1884px] bg-black flex-col mt-1">
       <div className="h-[90%] flex ">
         <Shelf />
         <Sidedrawer />
       </div>
+      <div className="h-4 mt-[-4px] z-100 bg-black"></div>
       <div className="mt-5">{vent && <Vent />}</div>
     </div>
   );
