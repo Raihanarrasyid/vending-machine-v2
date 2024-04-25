@@ -30,7 +30,7 @@ const Coke = {
 
 //Key represent Shelf and Index represent the Slot
 export const Products = {
-  A: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],
+  A: [CocaCola, {}, Coke, CocaCola, Dasani, Coke],
   B: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],
   C: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],
   D: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],

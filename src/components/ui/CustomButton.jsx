@@ -93,9 +93,15 @@ function CustomButton({ content, img, imgAlt }) {
     if (display.length === 2) {
       try {
         if (productsAvailable[display[0]][parseInt(display[1] - 1)]) {
-          setScreen(
-            productsAvailable[`${display[0]}`][`${parseInt(display[1] - 1)}`]
-          );
+          if (productsAvailable[display[0]][parseInt(display[1] - 1)].name) {
+            setScreen(
+              productsAvailable[`${display[0]}`][`${parseInt(display[1] - 1)}`]
+            );
+          } else {
+            clearDisplay();
+            setMachineIddle(true);
+            return;
+          }
           setMachineIddle(false);
         } else {
           clearDisplay();

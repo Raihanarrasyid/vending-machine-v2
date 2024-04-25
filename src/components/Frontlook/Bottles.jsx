@@ -99,12 +99,16 @@ function Bottles({ bottle, value, column, row }) {
             style={fall ? springBeforeFall : springAfterFall}
             className="absolute flex flex-1 items-center justify-center z-10 right-2 bottom-1 w-full h-full"
           >
-            <img
-              src={bottle.image}
-              alt={bottle.name}
-              className="w-[40%] h-[80%]"
-              style={shake ? { animation: "shake 0.5s" } : {}}
-            />
+            {bottle.image ? (
+              <img
+                src={bottle.image}
+                alt={bottle.name}
+                className="w-[40%] h-[80%]"
+                style={shake ? { animation: "shake 0.5s" } : {}}
+              />
+            ) : (
+              <></>
+            )}
           </animated.div>
         </>
       )}
