@@ -30,12 +30,54 @@ const Coke = {
 
 //Key represent Shelf and Index represent the Slot
 export const Products = {
-  A: [CocaCola, {}, Coke, CocaCola, Dasani, Coke],
-  B: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],
-  C: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],
-  D: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],
-  E: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],
-  F: [CocaCola, Dasani, Coke, CocaCola, Dasani, Coke],
+  A: [
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+  ],
+  B: [
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+  ],
+  C: [
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+  ],
+  D: [
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+  ],
+  E: [
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+  ],
+  F: [
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+    { ...CocaCola },
+    { ...Dasani },
+    { ...Coke },
+  ],
 };
 
 // machineSettings
@@ -47,7 +89,7 @@ export const machineSettings = {
   sideLogo: "/side.webp",
   sideMachine: "#f80506",
   sideMachineGradientBack: "#800000",
-  availableRows: 3,
-  availableColumns: 4,
+  availableRows: 5,
+  availableColumns: 6,
   vent: true,
 };

@@ -86,29 +86,25 @@ function Bottles({ bottle, value, column, row }) {
 
   return (
     <div className="relative flex flex-1 items-center justify-center">
-      <animated.div
-        style={{ ...springPropsMetal, zIndex: springBeforeFall.zIndex }}
-        className="absolute w-[100%] z-20 flex flex-1 justify-center right-2 items-end h-full"
-      >
-        <Metalroll />
-      </animated.div>
-      {row <= availableRow && column <= availableColumn && (
+      {row <= availableRow && column <= availableColumn && bottle.image && (
         <>
+          <animated.div
+            style={{ ...springPropsMetal, zIndex: springBeforeFall.zIndex }}
+            className="absolute w-[100%] z-20 flex flex-1 justify-center right-2 items-end h-full"
+          >
+            <Metalroll />
+          </animated.div>
           <div className="h-full w-full flex flex-1 items-end"></div>
           <animated.div
             style={fall ? springBeforeFall : springAfterFall}
             className="absolute flex flex-1 items-center justify-center z-10 right-2 bottom-1 w-full h-full"
           >
-            {bottle.image ? (
-              <img
-                src={bottle.image}
-                alt={bottle.name}
-                className="w-[40%] h-[80%]"
-                style={shake ? { animation: "shake 0.5s" } : {}}
-              />
-            ) : (
-              <></>
-            )}
+            <img
+              src={bottle.image}
+              alt={bottle.name}
+              className="w-[40%] h-[80%]"
+              style={shake ? { animation: "shake 0.5s" } : {}}
+            />
           </animated.div>
         </>
       )}
