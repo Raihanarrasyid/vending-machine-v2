@@ -3,6 +3,7 @@ import { machineSettings } from "../../global/state";
 
 function Sidedimension() {
   const sideMachine = machineSettings.sideMachine;
+  const sideMachineGradientBack = machineSettings.sideMachineGradientBack;
   return (
     <svg
       width="229"
@@ -62,7 +63,7 @@ function Sidedimension() {
           gradientUnits="userSpaceOnUse"
         >
           <stop stop-color={sideMachine} />
-          <stop offset="1" />
+          <stop offset="1" stop-color={sideMachineGradientBack} />
         </linearGradient>
       </defs>
     </svg>

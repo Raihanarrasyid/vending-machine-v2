@@ -45,6 +45,7 @@ export const machineSettings = {
   metalRollingColor: "#5B5B5B",
   sideLogo: "/side.webp",
   sideMachine: "#f80506",
+  sideMachineGradientBack: "#800000",
   availableRows: 3,
   availableColumns: 4,
   vent: true,
