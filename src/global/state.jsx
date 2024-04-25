@@ -41,6 +41,7 @@ export const Products = {
 // machineSettings
 export const machineSettings = {
   drawerColor: "#f80506",
+  drawerSide: "#DC0000",
   drawerLogo: "/drawer.webp",
   metalRollingColor: "#5B5B5B",
   sideLogo: "/side.webp",

@@ -18,7 +18,7 @@ function Sidepart() {
       <div className="relative">
         <Sidedimension />
       </div>
-      <img src={sideLogo} alt="side" className="w-[150px] h-[545px] absolute" />
+      <img src={sideLogo} alt="side" className="w-[110px] h-[545px] absolute" />
     </div>
   );
 }

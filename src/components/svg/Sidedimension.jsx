@@ -6,15 +6,15 @@ function Sidedimension() {
   const sideMachineGradientBack = machineSettings.sideMachineGradientBack;
   return (
     <svg
-      width="229"
+      width="170"
       height="1895"
-      viewBox="0 0 229 1895"
+      viewBox="0 0 170 1895"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <g filter="url(#filter0_d_14_1510)">
         <path
-          d="M4 0L224.989 153.476V1759.94L4 1887V0Z"
+          d="M4 0L166 153.476V1759.94L4 1887V0Z"
           fill="url(#paint0_linear_14_1510)"
         />
       </g>
@@ -23,12 +23,12 @@ function Sidedimension() {
           id="filter0_d_14_1510"
           x="0"
           y="0"
-          width="228.989"
+          width="170"
           height="1895"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -56,14 +56,14 @@ function Sidedimension() {
         </filter>
         <linearGradient
           id="paint0_linear_14_1510"
-          x1="1.5"
+          x1="2.16733"
           y1="900"
-          x2="264.5"
-          y2="902"
+          x2="192.087"
+          y2="902.818"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color={sideMachine} />
-          <stop offset="1" stop-color={sideMachineGradientBack} />
+          <stop stopColor={sideMachine} />
+          <stop offset="1" stopColor={sideMachineGradientBack} />
         </linearGradient>
       </defs>
     </svg>

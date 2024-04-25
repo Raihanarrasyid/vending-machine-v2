@@ -3,6 +3,7 @@ import { useSpring, animated } from "@react-spring/web";
 import { useBuy, useDisplay } from "../../global/globalState";
 import { Element, scroller } from "react-scroll";
 import { machineSettings } from "../../global/state";
+import DrawerSVG from "../svg/DrawerSVG";
 
 function Drawer() {
   const drawer = useBuy((state) => state.drawer);
@@ -76,7 +77,7 @@ function Drawer() {
     >
       <Element
         name="drawer"
-        className="relative w-[95%] h-[45%] bg-graytheme-default flex items-center justify-center rounded-md"
+        className="relative w-[496px] h-[196px] bg-graytheme-default flex items-center justify-center rounded-md"
       >
         <div style={{ perspective: "1000px" }} className="w-full h-full">
           <animated.div
@@ -86,15 +87,16 @@ function Drawer() {
               transformOrigin: "center center",
               backgroundColor: `${drawerColor}`,
             }}
-            className="w-full h-full rounded-md flex justify-between flex-col items-center p-9"
+            className="relative w-[496px] h-[196px] rounded-md flex justify-between flex-col items-center p-9"
           >
-            <div className="mt-[-38px] h-8 rounded-b-md w-24 bg-black">
-              test
+            <div className="absolute top-[-2px] z-0">
+              <DrawerSVG />
             </div>
+
             <img
               src={drawerLogo}
               alt="logo drawer"
-              className="w-full h-full object-fill"
+              className="w-full h-full object-fill z-40"
             />
           </animated.div>
         </div>
