@@ -3,10 +3,11 @@ import MetalSeparator from "../svg/MetalSeparator";
 import Metalroll from "../svg/Metalroll";
 import { useSpring, animated } from "@react-spring/web";
 
-import { useBuy } from "../../global/globalState";
+import { useBuy, displayIddle } from "../../global/globalState";
 import { machineSettings } from "../../global/state";
 
 function Bottles({ bottle, value, column, row }) {
+  const [stock, setStock] = useState(bottle.stock);
   const [bottleValue, setBottleValue] = useState(value);
   const buy = useBuy((state) => state.buy);
   const buyBottleCode = useBuy((state) => state.bottleCode);
@@ -19,6 +20,12 @@ function Bottles({ bottle, value, column, row }) {
 
   const availableRow = machineSettings.availableRows;
   const availableColumn = machineSettings.availableColumns;
+
+  const clearBottleCode = useBuy((state) => state.clearBottleCode);
+  const clearBuy = useBuy((state) => state.clearBuy);
+  const clearbottle = useBuy((state) => state.clearBottle);
+  const clearDrawer = useBuy((state) => state.clearDrawer);
+  const setMachineIddle = displayIddle((state) => state.setMachineIddle);
 
   const springPropsMetal = useSpring({
     transform: `translate(${disappear ? 10 : 0}px, ${disappear ? 10 : 0}px)`,
@@ -66,7 +73,7 @@ function Bottles({ bottle, value, column, row }) {
   }, []);
 
   useEffect(() => {
-    if (buy && buyBottleCode === bottleValue) {
+    if (buy && buyBottleCode === bottleValue && stock > 0) {
       setDisappear(true);
       setShake(true);
       const audio = new Audio("/bottle-shelf.mp3");
@@ -80,34 +87,46 @@ function Bottles({ bottle, value, column, row }) {
         setBuy(false);
         setBottle(bottle);
         setDrawer(true);
+        setStock(stock - 1);
       }, 3200);
+    } else {
+      setMachineIddle(true);
+      clearBottleCode();
+      clearBuy();
+      clearDrawer();
+      clearbottle();
     }
   }, [buy]);
 
   return (
     <div className="relative flex flex-1 items-center justify-center">
-      {row <= availableRow && column <= availableColumn && bottle.image && (
-        <>
-          <animated.div
-            style={{ ...springPropsMetal, zIndex: springBeforeFall.zIndex }}
-            className="absolute w-[100%] z-20 flex flex-1 justify-center right-2 items-end h-full"
-          >
-            <Metalroll />
-          </animated.div>
-          <div className="h-full w-full flex flex-1 items-end"></div>
-          <animated.div
-            style={fall ? springBeforeFall : springAfterFall}
-            className="absolute flex flex-1 items-center justify-center z-10 right-2 bottom-1 w-full h-full"
-          >
-            <img
-              src={bottle.image}
-              alt={bottle.name}
-              className="w-[40%] h-[80%]"
-              style={shake ? { animation: "shake 0.5s" } : {}}
-            />
-          </animated.div>
-        </>
+      {row <= availableRow && column <= availableColumn && (
+        <animated.div
+          style={{ ...springPropsMetal, zIndex: springBeforeFall.zIndex }}
+          className="absolute w-[100%] z-20 flex flex-1 justify-center right-2 items-end h-full"
+        >
+          <Metalroll />
+        </animated.div>
       )}
+      {row <= availableRow &&
+        column <= availableColumn &&
+        bottle.image &&
+        stock > 0 && (
+          <>
+            <div className="h-full w-full flex flex-1 items-end"></div>
+            <animated.div
+              style={fall ? springBeforeFall : springAfterFall}
+              className="absolute flex flex-1 items-center justify-center z-10 right-2 bottom-1 w-full h-full"
+            >
+              <img
+                src={bottle.image}
+                alt={bottle.name}
+                className="w-[40%] h-[80%]"
+                style={shake ? { animation: "shake 0.5s" } : {}}
+              />
+            </animated.div>
+          </>
+        )}
       <div className="absolute z-0 w-full">
         <MetalSeparator />
       </div>
