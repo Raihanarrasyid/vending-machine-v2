@@ -21,6 +21,8 @@ function Bottles({ bottle, value, column, row }) {
   const availableRow = machineSettings.availableRows;
   const availableColumn = machineSettings.availableColumns;
 
+  const setBottleFall = displayIddle((state) => state.setBottleFall);
+
   const clearBottleCode = useBuy((state) => state.clearBottleCode);
   const clearBuy = useBuy((state) => state.clearBuy);
   const clearbottle = useBuy((state) => state.clearBottle);
@@ -54,8 +56,11 @@ function Bottles({ bottle, value, column, row }) {
     zIndex: fall ? 0 : 40,
   });
 
+  // -9 if left 11 if right
+
   const springAfterFall = useSpring({
-    opacity: fall ? 0 : 1,
+    translateY: fall ? -6 : 0,
+    translateX: fall ? 10 : 0,
     config: { duration: 1000 },
   });
 
@@ -87,9 +92,12 @@ function Bottles({ bottle, value, column, row }) {
         setBuy(false);
         setBottle(bottle);
         setDrawer(true);
+
         setStock(stock - 1);
       }, 3200);
-    } else {
+    } else if (buyBottleCode === bottleValue && stock < 1) {
+      console.log("Out of stock");
+      setBottleFall(false);
       setMachineIddle(true);
       clearBottleCode();
       clearBuy();
@@ -103,7 +111,7 @@ function Bottles({ bottle, value, column, row }) {
       {row <= availableRow && column <= availableColumn && (
         <animated.div
           style={{ ...springPropsMetal, zIndex: springBeforeFall.zIndex }}
-          className="absolute w-[100%] z-20 flex flex-1 justify-center right-2 items-end h-full"
+          className="absolute w-[100%] z-40 flex flex-1 justify-center right-2 items-end h-full"
         >
           <Metalroll />
         </animated.div>
@@ -113,7 +121,16 @@ function Bottles({ bottle, value, column, row }) {
         bottle.image &&
         stock > 0 && (
           <>
-            <div className="h-full w-full flex flex-1 items-end"></div>
+            <div className="z-20 h-full w-full flex flex-1 items-end"></div>
+            {stock > 1 && (
+              <animated.div className="absolute flex flex-1 items-center justify-center z-[10] bottom-[0.7rem] w-full h-full">
+                <img
+                  src={bottle.image}
+                  alt={bottle.name}
+                  className="w-[40%] h-[80%]"
+                />
+              </animated.div>
+            )}
             <animated.div
               style={fall ? springBeforeFall : springAfterFall}
               className="absolute flex flex-1 items-center justify-center z-10 right-2 bottom-1 w-full h-full"

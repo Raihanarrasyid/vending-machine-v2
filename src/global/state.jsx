@@ -32,7 +32,7 @@ const Coke = {
 export const Products = {
   A: [
     {},
-    { ...Dasani, stock: 5 },
+    { ...Dasani, stock: 2 },
     { ...Coke, stock: 5 },
     { ...CocaCola, stock: 5 },
     { ...Dasani, stock: 5 },

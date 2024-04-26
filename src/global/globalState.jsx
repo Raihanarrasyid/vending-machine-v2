@@ -33,5 +33,7 @@ export const useDisplay = create((set) => ({
 
 export const displayIddle = create((set) => ({
   isMachineIddle: true,
+  isBottleFall: false,
+  setBottleFall: (isBottleFall) => set({ isBottleFall }),
   setMachineIddle: (isMachineIddle) => set({ isMachineIddle }),
 }));

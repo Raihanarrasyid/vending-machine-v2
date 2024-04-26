@@ -11,12 +11,16 @@ function CustomButton({ content, img, imgAlt }) {
   const [disabled, setDisabled] = useState(false);
   const [productsAvailable, setProductAvailable] = useState(Products);
 
+  const bottleFall = displayIddle((state) => state.isBottleFall);
+  const setBottleFall = displayIddle((state) => state.setBottleFall);
+
   const display = useDisplay((state) => state.display);
   const setBottleCode = useBuy((state) => state.setBottleCode);
   const setDisplay = useDisplay((state) => state.setDisplay);
   const clearDisplay = useDisplay((state) => state.clearDisplay);
   const setBuy = useBuy((state) => state.setBuy);
   const setScreen = useDisplay((state) => state.setScreen);
+
   const setMachineIddle = displayIddle((state) => state.setMachineIddle);
   const drawer = useBuy((state) => state.drawer);
 
@@ -29,7 +33,7 @@ function CustomButton({ content, img, imgAlt }) {
   });
 
   const handleClick = async () => {
-    if (disabled || drawer) return;
+    if (disabled || drawer || bottleFall) return;
     const audio = new Audio("/button.mp3");
     audio.play();
 
@@ -61,6 +65,7 @@ function CustomButton({ content, img, imgAlt }) {
         handleBuy();
         clearDisplay();
         setMachineIddle(false);
+        setBottleFall(true);
       } else {
         clearDisplay();
         setMachineIddle(true);
@@ -70,6 +75,12 @@ function CustomButton({ content, img, imgAlt }) {
       setMachineIddle(true);
     }
   };
+
+  useEffect(() => {
+    if (drawer === false) {
+      setBottleFall(false);
+    }
+  }, [drawer]);
 
   useEffect(() => {
     const updatedProducts = {};
@@ -124,7 +135,7 @@ function CustomButton({ content, img, imgAlt }) {
 
   return (
     <button
-      disabled={disabled}
+      disabled={disabled || bottleFall}
       onClick={handleClick}
       className="flex items-center justify-center"
     >
