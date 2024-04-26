@@ -56,8 +56,6 @@ function Bottles({ bottle, value, column, row }) {
     zIndex: fall ? 0 : 40,
   });
 
-  // -9 if left 11 if right
-
   const springAfterFall = useSpring({
     translateY: fall ? -6 : 0,
     translateX: fall ? 10 : 0,
@@ -96,7 +94,6 @@ function Bottles({ bottle, value, column, row }) {
         setStock(stock - 1);
       }, 3200);
     } else if (buyBottleCode === bottleValue && stock < 1) {
-      console.log("Out of stock");
       setBottleFall(false);
       setMachineIddle(true);
       clearBottleCode();
