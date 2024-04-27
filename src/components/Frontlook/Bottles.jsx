@@ -58,7 +58,7 @@ function Bottles({ bottle, value, column, row }) {
 
   const springAfterFall = useSpring({
     translateY: fall ? -6 : 0,
-    translateX: fall ? 10 : 0,
+    translateX: fall ? 9 : 0,
     config: { duration: 1000 },
   });
 
